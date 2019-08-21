@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<link href="layui/css/layui.css" rel="stylesheet" type="text/css" />
+<script src="layui/layui.js"></script>
+
+<script type="text/javascript" src="layui/lay/phpyun_modules/area_data.js"></script>
+</head>
+
+<body>
+<div class="layui-field-box">
+    <div id="p1"></div>
+</div>
+
+<div class="layui-field-box">
+    <div id="p2"></div>
+</div>
+
+<button onclick="f();">get data</button>
+
+<script>
+  //应把当前文件放到合适的目录测试picker.js组件的效果
+
+  //config的设置是全局的
+  layui.config({
+    base: 'layui/lay/phpyun_modules/' //假设这是picker.js所在的目录
+  }).use(['picker']);
+
+  layui.use(['picker'], function() {
+      var picker = layui.picker;
+      //demo1
+      var p1 = new picker();
+      p1.set({
+          elem: '#p1',
+          data: Area,
+          codeConfig: {
+              code: 440104,
+              type: 3
+          }
+      }).render();
+      
+      //demo2
+      var p2 = new picker();
+      p2.set({
+          elem: '#p2',
+          data: Area,
+          canSearch: true
+      }).render();
+  });
+  
+  function f()
+  {
+    layui.use(['picker'], function() {
+      var $ = layui.$
+        ,picker = layui.picker;
+        
+      var p1 = new picker();
+      
+      var data = p1.getData($("#p1"));
+      alert(data);
+      
+      data = p1.getData($("#p2"));
+      alert(data);
+    });
+  }
+</script>
+</body>
+</html>
